@@ -27,6 +27,12 @@ public class NavireManager {
 	public Collection<Navire> getAllNavires(){
 		return navireRepository.findAll();
 	}
+	public Collection<Navire> getAllNaviresOrderBy(String orderBy){
+		return navireRepository.findAllOrderBy(orderBy);
+	}
+	public Collection<Navire> getAllNaviresOrderByWithLimit(String orderBy, int limit){
+		return navireRepository.findAllOrderByLimit(orderBy, limit);
+	}
 	
 	public Navire getNavireByCode(String code) {
 		navire = navireRepository.getNavireByCode(code);
