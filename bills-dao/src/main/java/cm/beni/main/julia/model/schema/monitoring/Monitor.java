@@ -17,7 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import cm.beni.main.julia.dao.controller.ObjectIdResolver;
 
@@ -26,7 +26,8 @@ import cm.beni.main.julia.dao.controller.ObjectIdResolver;
  */
 @Entity
 @Table(name = "monitor", schema = "monitoring")
-@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@monitor", scope = Monitor.class, resolver = ObjectIdResolver.class)
+//@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@monitor", scope = Monitor.class, resolver = ObjectIdResolver.class)
+@JsonIdentityInfo(generator=JSOGGenerator.class, resolver = ObjectIdResolver.class)
 public class Monitor implements java.io.Serializable {
 
 	/**

@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import cm.beni.main.julia.dao.controller.ObjectIdResolver;
 
@@ -18,7 +18,8 @@ import cm.beni.main.julia.dao.controller.ObjectIdResolver;
 @Entity
 @Table(name = "role", schema = "security", uniqueConstraints = { @UniqueConstraint(columnNames = "code"),
 		@UniqueConstraint(columnNames = "name") })
-@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@role", scope = Role.class, resolver = ObjectIdResolver.class)
+//@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@role", scope = Role.class, resolver = ObjectIdResolver.class)
+@JsonIdentityInfo(generator=JSOGGenerator.class, resolver = ObjectIdResolver.class)
 public class Role implements java.io.Serializable {
 
 	/**

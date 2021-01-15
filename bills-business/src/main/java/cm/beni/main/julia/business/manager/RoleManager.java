@@ -20,10 +20,17 @@ public class RoleManager {
 		super();
 	}
 
-	public String create(String code, String name, String label) {
-		this.role = new Role(BusinessController.generateUIDPrimaryKey(), code, name, label);
+	public Role create(Role role) {
+		role.setIdentify(BusinessController.generateUIDPrimaryKey());
+		this.role = role;
 		this.roleRepository.save(role);
-		return role.getIdentify();
+		return role;
+	}
+
+	public Role update(Role role) {
+		this.role = role;
+		this.roleRepository.save(role);
+		return role;
 	}
 
 	public Role getRoleById(String id) {

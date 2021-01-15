@@ -10,13 +10,7 @@ import cm.beni.main.julia.model.schema.navires.Navire;
 
 public interface NavireRepository extends JpaRepository<Navire, Long> {
 
-	@Query("FROM Navire WHERE code=:code")
-	Navire getNavireByCode(@Param("code") String code);
-
-	@Query("FROM Navire ORDER BY :orderBy")
-	Collection<Navire> findAllOrderByLimit(@Param("orderBy") String orderBy);
-
-	@Query("FROM Navire WHERE ORDER BY :orderBy LIMIT :limit")
-	Collection<Navire> findAllOrderBy(@Param("orderBy") String orderBy, @Param("limit") int limit);
+	@Query("FROM Navire WHERE code LIKE :code")
+	Collection<Navire> getNaviresByCode(@Param("code") String code);
 
 }

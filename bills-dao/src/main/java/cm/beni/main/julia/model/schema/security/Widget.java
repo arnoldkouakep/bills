@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import cm.beni.main.julia.dao.controller.ObjectIdResolver;
 
@@ -18,7 +18,8 @@ import cm.beni.main.julia.dao.controller.ObjectIdResolver;
 @Entity
 @Table(name = "widget", schema = "security", uniqueConstraints = { @UniqueConstraint(columnNames = "order"),
 		@UniqueConstraint(columnNames = "code"), @UniqueConstraint(columnNames = "position") })
-@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@widget", scope = Widget.class, resolver = ObjectIdResolver.class)
+//@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@widget", scope = Widget.class, resolver = ObjectIdResolver.class)
+@JsonIdentityInfo(generator=JSOGGenerator.class, resolver = ObjectIdResolver.class)
 public class Widget implements java.io.Serializable {
 
 	/**
@@ -63,7 +64,7 @@ public class Widget implements java.io.Serializable {
 		this.identify = identify;
 	}
 
-	@Column(name = "order", unique = true, nullable = false)
+	@Column(name = "[order]", unique = true, nullable = false)
 	public int getOrder() {
 		return this.order;
 	}
@@ -90,7 +91,7 @@ public class Widget implements java.io.Serializable {
 		this.label = label;
 	}
 
-	@Column(name = "position", unique = true, nullable = false, length = 100)
+	@Column(name = "[position]", unique = true, nullable = false, length = 100)
 	public String getPosition() {
 		return this.position;
 	}

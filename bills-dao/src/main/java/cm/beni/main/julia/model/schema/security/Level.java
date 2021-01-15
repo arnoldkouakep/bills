@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import cm.beni.main.julia.dao.controller.ObjectIdResolver;
 
@@ -22,7 +22,8 @@ import cm.beni.main.julia.dao.controller.ObjectIdResolver;
  */
 @Entity
 @Table(name = "level", schema = "security", uniqueConstraints = @UniqueConstraint(columnNames = "code"))
-@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@level", scope = Level.class, resolver = ObjectIdResolver.class)
+//@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@level", scope = Level.class, resolver = ObjectIdResolver.class)
+@JsonIdentityInfo(generator = JSOGGenerator.class, resolver = ObjectIdResolver.class)
 public class Level implements java.io.Serializable {
 
 	/**
@@ -64,7 +65,7 @@ public class Level implements java.io.Serializable {
 		this.identify = identify;
 	}
 
-	@Column(name = "order", nullable = false)
+	@Column(name = "[order]", nullable = false)
 	public int getOrder() {
 		return this.order;
 	}

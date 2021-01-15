@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import cm.beni.main.julia.dao.controller.ObjectIdResolver;
 
@@ -19,7 +19,8 @@ import cm.beni.main.julia.dao.controller.ObjectIdResolver;
  */
 @Entity
 @Table(name = "log", schema = "monitoring")
-@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@log", scope = Log.class, resolver = ObjectIdResolver.class)
+//@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@log", scope = Log.class, resolver = ObjectIdResolver.class)
+@JsonIdentityInfo(generator=JSOGGenerator.class, resolver = ObjectIdResolver.class)
 public class Log implements java.io.Serializable {
 
 	/**

@@ -3,6 +3,7 @@ package cm.beni.main.julia.model.schema.navires;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import cm.beni.main.julia.dao.controller.ObjectIdResolver;
 
@@ -21,7 +22,8 @@ import cm.beni.main.julia.dao.controller.ObjectIdResolver;
  */
 @Entity
 @Table(name = "navire", schema = "navires", uniqueConstraints = @UniqueConstraint(columnNames = "code"))
-@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@navire", scope = Navire.class, resolver = ObjectIdResolver.class)
+//@JsonIdentityInfo(generator=ObjectIdGenerators.UUIDGenerator.class, property="@navire", scope = Navire.class, resolver = ObjectIdResolver.class)
+@JsonIdentityInfo(generator=JSOGGenerator.class, resolver = ObjectIdResolver.class)
 public class Navire implements java.io.Serializable {
 
 	/**

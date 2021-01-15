@@ -25,5 +25,7 @@
 		<module>bills-security</module>
 		<module>bills-api-navires</module>
 		<module>bills-api-dossiers</module>
+		<module>bills-api-depenses</module>
+		<module>bills-api-factures</module>
 	</modules>
 </project>

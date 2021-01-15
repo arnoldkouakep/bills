@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import cm.beni.main.julia.dao.controller.ObjectIdResolver;
 
@@ -27,7 +27,8 @@ import cm.beni.main.julia.dao.controller.ObjectIdResolver;
 		@UniqueConstraint(columnNames = { "user_name", "password" }),
 		@UniqueConstraint(columnNames = { "first_name", "last_name" }), @UniqueConstraint(columnNames = "cni"),
 		@UniqueConstraint(columnNames = { "user_name", "level" }) })
-@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@user", scope = User.class, resolver = ObjectIdResolver.class)
+//@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "@user", scope = User.class, resolver = ObjectIdResolver.class)
+@JsonIdentityInfo(generator=JSOGGenerator.class, resolver = ObjectIdResolver.class)
 public class User implements java.io.Serializable {
 
 	/**

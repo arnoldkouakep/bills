@@ -21,10 +21,17 @@ public class UserRolesManager {
 		super();
 	}
 	
-	public String create(String user, String role) {
-		this.userRoles = new UserRoles(BusinessController.generateUIDPrimaryKey(), role, user);
-		this.userRolesRepository.save(userRoles);
-		return userRoles.getIdentify();
+	public UserRoles create(UserRoles userRoles) {
+		userRoles.setIdentify(BusinessController.generateUIDPrimaryKey());
+		this.userRoles = userRoles;
+		this.userRolesRepository.save(this.userRoles);
+		return this.userRoles;
+	}
+
+	public UserRoles update(UserRoles userRoles) {
+		this.userRoles = userRoles;
+		this.userRolesRepository.save(this.userRoles);
+		return this.userRoles;
 	}
 
 	public Collection<UserRoles> getUserRolesOfUser(String user) {

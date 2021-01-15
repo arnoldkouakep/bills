@@ -20,10 +20,17 @@ public class LevelManager {
 		super();
 	}
 	
-	public String create(int order, String code, String libelle) {
-		this.level = new Level(BusinessController.generateUIDPrimaryKey(), order, code, libelle);
-		this.levelRepository.save(level);
-		return libelle;
+	public Level create(Level level) {
+		level.setIdentify(BusinessController.generateUIDPrimaryKey());
+		this.level = level;
+		this.levelRepository.save(this.level);
+		return this.level;
+	}
+
+	public Level update(Level level) {
+		this.level = level;
+		this.levelRepository.save(this.level);
+		return this.level;
 	}
 
 	public Level getLevelByCode(String code) {

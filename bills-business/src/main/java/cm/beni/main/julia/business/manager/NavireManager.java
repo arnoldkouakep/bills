@@ -19,7 +19,14 @@ public class NavireManager {
 	private NavireRepository navireRepository;
 
 	public Navire create(Navire navire) {
-		this.navire = new Navire(BusinessController.generateUIDPrimaryKey(), navire.getCode(), navire.getLibelle());
+		navire.setIdentify(BusinessController.generateUIDPrimaryKey());
+		this.navire = navire;
+		navireRepository.save(this.navire);
+		return this.navire;
+	}
+
+	public Navire update(Navire navire) {
+		this.navire = navire;
 		navireRepository.save(this.navire);
 		return this.navire;
 	}
@@ -27,16 +34,12 @@ public class NavireManager {
 	public Collection<Navire> getAllNavires(){
 		return navireRepository.findAll();
 	}
-	public Collection<Navire> getAllNaviresOrderBy(String orderBy){
-		return navireRepository.findAllOrderBy(orderBy);
-	}
-	public Collection<Navire> getAllNaviresOrderByWithLimit(String orderBy, int limit){
-		return navireRepository.findAllOrderByLimit(orderBy, limit);
-	}
+//	public Collection<Navire> getAllNaviresOrderByWithLimit(String orderBy, String sens, int limit){
+//		return navireRepository.findAllOrderByLimit(orderBy, sens, limit, new PageRequest(0, 10, org.springframework.data.domain.Sort));
+//	}
 	
-	public Navire getNavireByCode(String code) {
-		navire = navireRepository.getNavireByCode(code);
-		return navire;
+	public Collection<Navire> getNaviresByCode(String code) {
+		return navireRepository.getNaviresByCode(code);
 	}
 
 }
